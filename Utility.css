@@ -30,9 +30,14 @@
     border-radius: 7px;
 }
 
-m-1{
+.m-1{
     margin:5px;
 }
+.p-1{
+    padding: 10px;
+}
+
+
 .invert{
     /*  It helps to convert the svg or image color , black to white and white to black*/
     filter: invert(1);
