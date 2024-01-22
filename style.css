@@ -59,3 +59,36 @@ body {
 .footer a {
   color: grey;
 }
+
+.right{
+    margin: 16px 0;
+}
+.header{
+    justify-content: space-between;
+    background-color: rgb(34,34,34);
+}
+
+/*  Apply the css on the all element inside the header*/
+.header > *{
+    padding: 20px;
+}
+
+.spotifyPlaylist{
+  padding: 16px;
+}
+
+.spotifyPlaylist .card{
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #252525;
+}
+
+.card > *{
+  padding-top: 10px;
+}
+
+.card img{
+  width: 100%;
+  object-fit: contain;
+}
