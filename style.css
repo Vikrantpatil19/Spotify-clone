@@ -159,11 +159,15 @@ body {
 }
 
 .play-bar{
-  position: absolute;
-  bottom: 0;
-  background-color: rgb(139,193,139);
+  position: fixed;
+  bottom: 25px;
+  filter: invert(1);
+  background-color: #dad5d5;
   width: 90%;
   padding: 12px;
+  width: 70vw;
+  border-radius: 10px;
+  height: 35px;
 }
 
 .songButtons{
@@ -173,7 +177,7 @@ body {
 }
 .songList{
   margin: 40px 0;
-  height: 644px;
+  height: 500px;
   overflow: auto;
 }
 .songList ul{
@@ -212,3 +216,23 @@ body {
   
 }
 
+.seekbar{
+  height: 2px;
+  width: 98%;
+  border-radius: 10px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  margin: 5px;
+}
+
+.circle{
+  width: 14px;
+  height: 14px;
+  border-radius: 13px;
+  background-color: black;
+  position: relative;
+  bottom: 6.5px;
+  left: 0%;
+  transition: left 0.5s;
+}

@@ -21,14 +21,22 @@ async function getSongs() {
    return songs
 }
  
-getSongs()
+//creating the function to play the song
+
+const playMusic = (track)=>{
+   let audio = new Audio("/songs/" + track)
+  // audio.play()
+}
 
 //here the promise is pending so for that we can do this and get the list of all songs
 async function main() {
-    let songs = await getSongs()
-    console.log(songs)
+   
+  let currentSong;
+  //get the list of the song
+  let songs = await getSongs()
+    
 
-    //put the songs in the your library in the ul tag
+    //put the songs in the your library in the ul tag & show all the songs in the playlist
 
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     for (const song of songs) {
@@ -40,20 +48,22 @@ async function main() {
                               <div class="playnow">
                                 <span>Play Now</span>
                                 <img class="invert" src="play.svg" alt="Play">
-                              </div>
-  
-            
-        </li>`;
+                              </div> </li>`;
     }
 
-    //play the first song
-    var audio = new Audio(songs[0]);
-   // audio.play();
-   
-   //This is for showing the duration of the song
-   audio.addEventListener("loadeddata" , () => {
-     console.log(audio.duration , audio.currentSrc , audio.currentTime)
-     //
-   })
+    
+    // Attached the event listener to each song
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e=>{
+      
+      e.addEventListener("click" , element=>{
+        //console.log(e.querySelector(".info").firstElementChild.innerHTML) //Give me the first element of the info div
+        //playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim()) //Function to play the song & .trim() to remove the spaces from the song for the  playMusic function
+      })
+     
+      
+    })
+
+
+    
 }
 main()
