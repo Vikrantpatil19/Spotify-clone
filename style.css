@@ -224,6 +224,7 @@ body {
   position: absolute;
   bottom: 0;
   margin: 5px;
+  cursor: pointer;
 }
 
 .circle{
@@ -239,4 +240,13 @@ body {
 
 .songButtons img{
   cursor: pointer;
+}
+
+.containerOfplaybar{
+  justify-content: space-between;
+}
+
+.songInfo , .songTime{
+  color: black;
+  padding: 0 10px;
 }
