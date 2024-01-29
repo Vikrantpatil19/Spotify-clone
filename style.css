@@ -18,7 +18,8 @@ body {
   width: 75vw;
 }
 
-.home {
+.close{
+  display: none;
 }
 
 .home ul li {
@@ -80,9 +81,14 @@ body {
   padding: 16px;
 }
 
+.spotifyPlaylist h1{
+  padding: 16px;
+}
+
 .card-container{
   margin: 30px;
   display: flex;
+  
   gap: 10px;
   flex-wrap: wrap;
   max-height: 68vh;
@@ -287,14 +293,32 @@ body {
     width: 80vw;
   }
   .seekbar{
-    width: 90%;
+    width: 79vw;
   }
 
   .right{
     width: 100vw;
   }
+  .card{
+    width: 90vw;
+  }
+  .card-container{
+    margin: 0;
+    justify-content: center;
+  }
+  .right{
+    margin: 0;
+  }
 
   .hambburger{
     display: flex;
+  }
+  .close{
+    display: block;
+  }
+  .containerOfplaybar{
+    flex-direction: column;
+    gap: 23px;
+    align-items: center;
   }
 }
