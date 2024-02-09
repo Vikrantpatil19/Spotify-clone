@@ -290,10 +290,10 @@ body {
   }
 
   .play-bar{
-    width: 80vw;
+    width: calc(100vw - 75px);
   }
   .seekbar{
-    width: 79vw;
+    width: calc(100vw - 120px);
   }
 
   .right{

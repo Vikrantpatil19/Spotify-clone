@@ -1,6 +1,7 @@
 
 //Global variable for changing the current song
 let currentSong = new Audio();
+let songs;
 
 //By using the chatgpt - write the function that takes the seconds and convert it into the formate of seconds/minutes
 // Function to convert seconds to minutes and seconds format
@@ -61,7 +62,7 @@ async function main() {
    
   
   //get the list of the song
-  let songs = await getSongs()
+  songs = await getSongs()
   playMusic(songs[0] , true)
     
 
@@ -109,8 +110,8 @@ async function main() {
     currentSong.addEventListener("timeupdate" , () =>{
       console.log(currentSong.currentTime , currentSong.duration);
       document.querySelector(".songTime").innerHTML = 
-      `${secondsToMinutesSeconds(currentSong.currentTime)}/
-      ${secondsToMinutesSeconds(currentSong.duration)}`
+      `${secondsToMinutesSeconds(currentSong.currentTime)} /
+       ${secondsToMinutesSeconds(currentSong.duration)}`
       
       document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration)*100 + "%";
 
@@ -135,6 +136,29 @@ async function main() {
      document.querySelector(".close").addEventListener("click" , ()=>{
       document.querySelector(".left").style.left="-120%"
     })
+
+    //Add an event listener for the previous 
+    previous.addEventListener("click" , ()=>{
+      console.log("previous Clicked")
+      console.log(currentSong)
+      let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+      if((index-1) >= 0){
+        playMusic(songs[index-1])
+      }
+    })
+     
+    //Add an event listener for the  next
+    next.addEventListener("click" , ()=>{
+      console.log("Next Clicked")
+
+      let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+      if((index+1) > length){
+        playMusic(songs[index+1])
+      }
+      
+    })
+    
+
 
 
     
