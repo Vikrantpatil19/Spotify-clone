@@ -109,9 +109,8 @@ async function main() {
     //Time update event
     currentSong.addEventListener("timeupdate" , () =>{
       console.log(currentSong.currentTime , currentSong.duration);
-      document.querySelector(".songTime").innerHTML = 
-      `${secondsToMinutesSeconds(currentSong.currentTime)} /
-       ${secondsToMinutesSeconds(currentSong.duration)}`
+      document.querySelector(".songTime").innerHTML = `${secondsToMinutesSeconds(currentSong.
+        currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`
       
       document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration)*100 + "%";
 
@@ -152,10 +151,17 @@ async function main() {
       console.log("Next Clicked")
 
       let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
-      if((index+1) > length){
+      if((index+1) < songs.length){
         playMusic(songs[index+1])
       }
       
+    })
+
+    //Add an event to volume
+
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change" , (e)=>{
+      console.log("setting volume to" , e.target.value, "/100")
+      currentSong.volume = parseInt(e.target.value)/100
     })
     
 
