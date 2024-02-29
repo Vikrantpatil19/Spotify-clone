@@ -27,7 +27,7 @@ async function getSongs(folder) {
   let as = div.getElementsByTagName("a");
 
   //Creating the empty array
-  let songs = [];
+  songs = [];
 
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
@@ -66,7 +66,7 @@ async function getSongs(folder) {
     });
   });
 
-  return songs;
+  
 }
 
 //creating the function to play the song
@@ -90,14 +90,50 @@ const playMusic = (track, pause = false) => {
 async function displayAlbums() {
   let a = await fetch(`http://127.0.0.1:5500/songs/`);
   let response = await a.text();
-
   let div = document.createElement("div");
   div.innerHTML = response;
+  
   let anchors = div.getElementsByTagName("a")
-  console.log(anchors);
-  Array.from(anchors).forEach(e=>{
+  
+  let cardContainer = document.querySelector(".cardContainer")
+  
+
+
+  Array.from(anchors).forEach(async e=>{
     if(e.href.includes("/songs")){
-      console.log(e.href.split("/").slice(-2)[0])
+     
+      let folder = e.href.split("/").slice(-1)[0]
+      
+      //Get the metadata of the folder
+      let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
+      let response = await a.json();
+      console.log(response);
+      cardContainer.innerHTML = cardContainer.innerHTML +
+      ` <div data-folder="cs"  class="card">
+      <!-- Adding the play button inside the card  -->
+      <div class="play">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          color="#000000"
+        >
+          <path
+            d="M5 20V4L19 12L5 20Z"
+            stroke="#000000"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+            fill="#000"
+          ></path>
+        </svg>
+      </div>
+      <img src="/songs/${folder}/cover.jpg" alt="" />
+      <h2>${response.title}</h2>
+      <p>${response.description}</p>
+    </div>`
+
     }
   })
 }
@@ -105,7 +141,7 @@ async function displayAlbums() {
 //here the promise is pending so for that we can do this and get the list of all songs
 async function main() {
   //get the list of the song
-  songs = await getSongs("songs/ncs");
+   await getSongs("songs/ncs");
   playMusic(songs[0], true);
 
   //Display all the albums on the page
